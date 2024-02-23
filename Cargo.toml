@@ -1,0 +1,17 @@
+[package]
+name = "rust-ckmeans"
+version = "0.1.0"
+authors = ["Jeongmin Byun <jmbyun91@gmail.com>"]
+description = "A library for K-Means clustering"
+repository = "https://github.com/tanker-fund/rust-ckmeans"
+license = "MIT"
+edition = "2021"
+build = "build.rs"
+links = "ckmeans"
+
+[build-dependencies]
+cc = "^1.0.37"
+
+[dependencies]
+libc = "^0.2"
+rand = "0.8.5"

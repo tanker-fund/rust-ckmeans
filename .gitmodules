@@ -1,0 +1,3 @@
+[submodule "ckmeans"]
+	path = ckmeans
+	url = https://github.com/pramsey/kmeans.git
