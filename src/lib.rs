@@ -6,6 +6,7 @@ use std::os::raw::c_int;
 use std::os::raw::c_uint;
 use std::os::raw::c_void;
 use std::option::Option;
+use std::slice;
 
 use crate::rand::distributions::Distribution;
 
@@ -43,14 +44,16 @@ extern "C" {
 }
 
 unsafe extern "C" fn calc_distance(a: Pointer, b: Pointer) -> f64 {
-    let point_a = &*(a as *const Vec<f64>);
-    let point_b = &*(b as *const Vec<f64>);
+    let point_a = slice::from_raw_parts(a as *const f64, 3);
+    let point_b = slice::from_raw_parts(b as *const f64, 3);
 
     let distance_squared: f64 = point_a
         .iter()
         .zip(point_b.iter())
         .map(|(&a, &b)| (a - b).powi(2))
         .sum();
+    
+    println!("PA: {:?}, PB: {:?}, Dist: {:?}", a, b, distance_squared);
 
     distance_squared
 }
@@ -104,9 +107,15 @@ pub fn cluster_with_kmeans(data: &Vec<Vec<f64>>, cluster_count: u32, max_iterati
         .map(|point| point.as_ptr() as Pointer)
         .collect();
     let mut centers: Vec<Vec<f64>> = Vec::with_capacity(cluster_count as usize);
-    for _ in 0..cluster_count {
-        centers.push(vec![0.0f64; 3]);
+    for i in 0..cluster_count {
+        let mut center: Vec<f64> = Vec::with_capacity(data[0].len());
+        for j in 0..data[0].len() {
+            center.push(data[i as usize][j]);
+        }
+        centers.push(center);
+        // centers.push(vec![0.0f64; 3]);
     }
+
     let mut center_pointers: Vec<Pointer> = (0..cluster_count)
         .map(|i| centers[i as usize].as_ptr() as Pointer)
         .collect();
