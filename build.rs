@@ -3,7 +3,7 @@ extern crate cc;
 // use std::fs;
 use std::env;
 
-const SRC_FILE: &str = "ckmeans/kmeans.c";
+const SRC_FILE: &str = "extern/kmeans.c";
 // const SRC_PATCHED: &str = "pyemd/c_emd/emd.patched.c";
 
 
