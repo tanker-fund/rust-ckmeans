@@ -73,7 +73,8 @@ unsafe extern "C" fn calc_centroid(
 
     for i in 0..num_objs {
         if *clusters.add(i) == cluster {
-            let point = &*(objs.add(i) as *const Vec<f64>);
+            // let point = &*(objs.add(i) as *const Vec<f64>);
+            let point = slice::from_raw_parts(objs.add(i) as *const f64, l);
             for j in 0..l {
                 sum_by_dimension[j] += point[j];
             }
