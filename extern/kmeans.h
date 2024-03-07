@@ -28,6 +28,7 @@
 *
 * #define KMEANS_THREADED
 */
+#define KMEANS_THREADED
 
 /*
 * When clustering lists with NULL elements, they will get this as
@@ -48,7 +49,7 @@
 * move to multi-threading.
 */
 #ifdef KMEANS_THREADED
-#define KMEANS_THR_MAX 4
+#define KMEANS_THR_MAX 96
 #define KMEANS_THR_THRESHOLD 250000
 #endif
 

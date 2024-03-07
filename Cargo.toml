@@ -1,6 +1,6 @@
 [package]
 name = "ckmeans"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Jeongmin Byun <jmbyun91@gmail.com>"]
 description = "A library for K-Means clustering"
 repository = "https://github.com/tanker-fund/rust-ckmeans"
