@@ -28,7 +28,6 @@
 *
 * #define KMEANS_THREADED
 */
-#define KMEANS_THREADED
 
 /*
 * When clustering lists with NULL elements, they will get this as
